@@ -1,0 +1,102 @@
+/* CSS fait par moi avec l'aide de chatGPT (Autorisé par le professeur)*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    padding: 30px 45px;
+    color: #111;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2.3rem;
+    font-weight: 500;
+    margin-top: 10px;
+    margin-bottom: 8px;
+}
+
+body > h2 {
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 65px;
+}
+
+.conteneur-formulaires {
+    display: inline-block;
+    width: 49%;
+    vertical-align: top;
+    padding: 0 40px;
+}
+
+.conteneur-formulaires:first-of-type {
+    border-right: 2px solid #777;
+}
+
+form h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 35px;
+}
+
+label {
+    display: block;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    height: 48px;
+    padding: 10px 14px;
+    font-size: 1rem;
+    border: 2px solid #333;
+    background-color: white;
+    margin-bottom: 28px;
+}
+
+input::placeholder {
+    color: #c8c8c8;
+    font-size: 1rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+
+.checkbox-container label {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+button {
+    display: block;
+    margin-left: auto;
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border: 3px solid black;
+    background-color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ececec;
+}
