@@ -1,0 +1,636 @@
+{
+  "info": {
+    "_postman_id": "9b68662e-683d-422a-83f0-2c273a7ce59b",
+    "name": "sw_épreuvefinale_2444332",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "51577314",
+    "_collection_link": "https://go.postman.co/collection/51577314-9b68662e-683d-422a-83f0-2c273a7ce59b?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Get liste livre (dispo)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get liste livre (tous)",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre?tous=true",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre"
+          ],
+          "query": [
+            {
+              "key": "tous",
+              "value": "true"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Récupérer livre avec ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre/1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ajouter un livre (obligatoires)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\": \"Martine à la plage\",\r\n    \"auteur\": \"Félix Gagné\",\r\n    \"isbn\": \"123456\",\r\n    \"disponible\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ajouter un livre (tous)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\": \"Martine à la piscine\",\r\n    \"auteur\": \"Didier Mathieu\",\r\n    \"isbn\": \"123456\",\r\n    \"disponible\": true,\r\n    \"date_ajout\": \"2007-05-02\",\r\n    \"description\": \"L'histoire passionnante d'une prof de math.\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Modifier livre (obligatoires)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\": \"Martine à la piscine\",\r\n    \"auteur\": \"Félix Beauchesne\",\r\n    \"isbn\": \"allo\",\r\n    \"disponible\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre/1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Modifier livre (tous)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"titre\": \"Martine à la piscine\",\r\n    \"auteur\": \"Félix Beauchesne\",\r\n    \"isbn\": \"allo\",\r\n    \"disponible\": true,\r\n    \"date_ajout\": \"2022-02-02\",\r\n    \"description\": \"bdwaoind\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre/1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Modifier status livre",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"disponible\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre/1/status",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre",
+            "1",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Supprimer livre",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/livre/1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "livre",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ajouter un pret (obligatoires)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"livre_id\": 2,\r\n    \"emprunteur\": \"Christine\",\r\n    \"date_retour_prevue\": \"2026-06-07\",\r\n    \"status\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/pret",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "pret"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ajouter un pret (tous)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 5678",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"livre_id\": 4,\r\n    \"emprunteur\": \"Christine\",\r\n    \"date_debut\": \"2026-05-07\",\r\n    \"date_retour_prevue\": \"2026-06-07\",\r\n    \"date_retour\": \"2026-06-07\",\r\n    \"status\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/pret",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "pret"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Modifier un prêt (obligatoires)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"livre_id\": 1,\r\n    \"emprunteur\": \"Martine\",\r\n    \"date_debut\": \"2007-05-03\",\r\n    \"date_retour_prevue\": \"2008-03-21\",\r\n    \"status\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/pret/1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "pret",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Modifier un prêt (tous)",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"livre_id\": 1,\r\n    \"emprunteur\": \"Martine\",\r\n    \"date_debut\": \"2007-05-03\",\r\n    \"date_retour_prevue\": \"2008-03-21\",\r\n    \"date_retour\": \"2009-09-09\",\r\n    \"status\": false\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/pret/1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "pret",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Modifier status prêt",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"status\": true\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/pret/1/status",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "pret",
+            "1",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Supprimer un prêt",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "cle_api 1234",
+            "type": "text"
+          }
+        ],
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/bibliotheque/pret/1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "bibliotheque",
+            "pret",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Ajouter bibliothèque",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nom\": \"test\",\r\n    \"courriel\": \"connor97@nhl.com\",\r\n    \"password\": \"ginette\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/utilisateurs",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "utilisateurs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Récupérer clé api",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"courriel\": \"bibliotheque@victoriaville.ca\",\r\n    \"password\": \"mdp123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/utilisateurs/cle",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "utilisateurs",
+            "cle"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Nouvelle clé api",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"courriel\": \"bibliotheque@victoriaville.ca\",\r\n    \"password\": \"mdp123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://tp-service-web-api-didier-mathieu.onrender.com/api/utilisateurs/cle?nouvelle=1",
+          "protocol": "https",
+          "host": [
+            "tp-service-web-api-didier-mathieu",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "api",
+            "utilisateurs",
+            "cle"
+          ],
+          "query": [
+            {
+              "key": "nouvelle",
+              "value": "1"
+            }
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
