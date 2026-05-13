@@ -3,5 +3,1041 @@
 apiVersion: v1
 kind: page
 spec:
-  id: RqRHoHn
   title: Default page
+  alias:
+    - rDQePhP
+  content:
+    - component: PageRow
+      name: pageRow6
+      children:
+        - component: Container
+          name: containerListeLivre
+          children:
+            - component: PageRow
+              name: pageRow2
+              props:
+                justifyContent: start
+              children:
+                - component: Text
+                  name: textTitreLivre
+                  layout:
+                    columnSize: 2.186439519198941
+                    horizontalAlign: start
+                    verticalAlign: start
+                  props:
+                    variant: h2
+                    value: Liste des livres
+                - component: Button
+                  name: buttonModifierStatusLivre
+                  layout:
+                    columnSize: 0.40448204695193885
+                    verticalAlign: center
+                  props:
+                    fullWidth: true
+                    variant: outlined
+                    content:
+                      $$jsExpression:
+                        'dataGridLivre.selection?.disponible ? "Indisponible" :
+                        "Disponible"'
+                    onClick:
+                      $$jsExpressionAction:
+                        modifierStatusLivre.call().then(() =>
+                        listeLivres.refetch())
+                    disabled:
+                      $$jsExpression: "!dataGridLivre.selection"
+                    size: small
+                - component: Button
+                  name: buttonSupprimerLivre
+                  layout:
+                    columnSize: 0.40907843384912007
+                    horizontalAlign: start
+                    verticalAlign: center
+                  props:
+                    variant: outlined
+                    fullWidth: true
+                    content: SUPPRIMER
+                    disabled:
+                      $$jsExpression: "!dataGridLivre.selection"
+                    onClick:
+                      $$jsExpressionAction: supprimerLivre.call().then(() => listeLivres.refetch())
+                    size: small
+                    color: secondary
+            - component: DataGrid
+              name: dataGridLivre
+              props:
+                loading: false
+                rowsSource: prop
+                rows:
+                  $$jsExpression: listeLivres.data
+                columns:
+                  - field: id
+                    type: number
+                  - field: bibliotheque_id
+                    type: number
+                  - field: titre
+                    type: string
+                  - field: auteur
+                    type: string
+                  - field: isbn
+                    type: number
+                  - field: date_ajout
+                    type: dateTime
+                  - field: disponible
+                    type: boolean
+                  - field: description
+                    type: json
+            - component: Checkbox
+              name: checkboxTous
+              layout:
+                columnSize: 1.6194348485903263
+              props:
+                mode: checkBox
+                label: Afficher tout les livres
+          layout:
+            columnSize: 1.1689977045659419
+        - component: Container
+          name: containerListePrets
+          children:
+            - component: PageRow
+              name: pageRow5
+              props:
+                justifyContent: start
+              children:
+                - component: Text
+                  name: textTitrePrets
+                  layout:
+                    columnSize: 1.8414016767971713
+                    horizontalAlign: start
+                    verticalAlign: start
+                  props:
+                    variant: h2
+                    value: Liste des prêts
+                - component: Button
+                  name: buttonModifierStatusPret
+                  layout:
+                    columnSize: 0.5753622279977979
+                    verticalAlign: center
+                  props:
+                    fullWidth: true
+                    variant: outlined
+                    content:
+                      $$jsExpression:
+                        'dataGridPret.selection?.statut_pret === "En cours" ?
+                        "Retourner" : "En cours"'
+                    onClick:
+                      $$jsExpressionAction: modifierStatusPret.call().then(() => listePrets.refetch())
+                    disabled:
+                      $$jsExpression: "!dataGridPret.selection"
+                - component: Button
+                  name: buttonSupprimerPret
+                  layout:
+                    columnSize: 0.5832360952050315
+                    verticalAlign: center
+                    horizontalAlign: start
+                  props:
+                    variant: outlined
+                    fullWidth: true
+                    content: SUPPRIMER
+                    disabled:
+                      $$jsExpression: "!dataGridLivre.selection"
+                    onClick:
+                      $$jsExpressionAction: supprimerPret.call().then(() => listePrets.refetch())
+                    size: small
+                    color: secondary
+            - component: DataGrid
+              name: dataGridPret
+              props:
+                loading: false
+                rowsSource: prop
+                rows:
+                  $$jsExpression:
+                    "dataGridLivre.selection?.id != null ? listePrets.data?.prets :
+                    []"
+                columns:
+                  - field: id
+                    type: number
+                  - field: livre_id
+                    type: number
+                  - field: emprunteur
+                    type: string
+                  - field: date_debut
+                    type: dateTime
+                  - field: date_retour_prevue
+                    type: dateTime
+                  - field: date_retour
+                    type: string
+                  - field: statut_pret
+                    type: string
+          layout:
+            columnSize: 0.8310022954340581
+      props:
+        justifyContent: start
+    - component: PageRow
+      name: pageRow8
+      children:
+        - component: Container
+          name: containerModifierLivre
+          children:
+            - component: Text
+              name: textTitreModifierLivre
+              props:
+                variant: h2
+                value: Modifier un livre
+            - component: Form
+              name: formModifierLivre
+              props:
+                submitButtonText: Modifier
+                onSubmit:
+                  $$jsExpressionAction: "if (dataGridLivre.selection) {\r
+
+                    \  modifierLivre.call().then(() => listeLivres.refetch())\r
+
+                    }"
+                formControlsFullWidth: false
+              children:
+                - component: PageRow
+                  name: pageRow1
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: TextField
+                      name: modifierLivreId
+                      layout:
+                        columnSize: 0.41168764960567494
+                      props:
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.id ?? 0
+                        label: ID
+                        fullWidth: true
+                        disabled:
+                          $$jsExpression: dataGridLivre.selection
+                        isRequired: true
+                    - component: TextField
+                      name: modifierLivreBibliothequeId
+                      layout:
+                        columnSize: 0.860590233885673
+                      props:
+                        label: ID Bibliothèque
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.bibliotheque_id ?? ""
+                        isRequired: true
+                        disabled:
+                          $$jsExpression: dataGridLivre.selection
+                    - component: TextField
+                      name: modifierLivreAuteur
+                      layout:
+                        columnSize: 1.7277221165086523
+                      props:
+                        label: Auteur
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.auteur ?? ""
+                        isRequired: true
+                - component: PageRow
+                  name: pageRow9
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: TextField
+                      name: modifierLivreTitre
+                      layout:
+                        columnSize: 1.2628309698212372
+                      props:
+                        label: Titre
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.titre ?? ""
+                        isRequired: true
+                    - component: Select
+                      name: modifierLivreDisponible
+                      layout:
+                        columnSize: 0.7371690301787627
+                      props:
+                        label: Est disponible
+                        fullWidth: true
+                        options:
+                          $$jsExpression: "[\r
+
+                            \  { value: true, label: \"Disponible\" },\r
+
+                            \  { value: false, label: \"Indisponible\" }\r
+
+                            ]"
+                        isRequired: false
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.disponible ?? true
+                - component: PageRow
+                  name: pageRow
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: TextField
+                      name: modifierLivreIsbn
+                      layout:
+                        columnSize: 0.4782714180035704
+                      props:
+                        label: ISBN
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.isbn ?? ""
+                        isRequired: true
+                    - component: TextField
+                      name: modifierLivreDescription
+                      layout:
+                        columnSize: 1.5223243465603864
+                      props:
+                        label: Description
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.description ?? ""
+                        isRequired: false
+                    - component: DatePicker
+                      name: modifierLivreDate
+                      layout:
+                        columnSize: 0.9994042354360435
+                      props:
+                        fullWidth: true
+                        label: Date d'ajout
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.date_ajout
+                        isRequired: false
+        - component: Container
+          name: containerModifierPret
+          children:
+            - component: Text
+              name: textTitreModifierPret
+              props:
+                variant: h2
+                value: Modifier un prêt
+            - component: Form
+              name: formModifierPret
+              children:
+                - component: PageRow
+                  name: pageRow7
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: TextField
+                      name: modifierPretId
+                      layout:
+                        columnSize: 0.5934664750073211
+                      props:
+                        defaultValue:
+                          $$jsExpression: dataGridPret.selection?.id ?? 0
+                        label: ID
+                        fullWidth: true
+                        disabled:
+                          $$jsExpression: dataGridPret.selection
+                        isRequired: true
+                    - component: TextField
+                      name: modifierPretLivreId
+                      layout:
+                        columnSize: 0.588245204695539
+                      props:
+                        label: ID Livre
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridPret.selection?.livre_id ?? ""
+                        isRequired: true
+                        disabled:
+                          $$jsExpression: dataGridPret.selection
+                    - component: TextField
+                      name: modifierPretEmprunteur
+                      layout:
+                        columnSize: 1.8182883202971398
+                      props:
+                        label: Emprunteur
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridPret.selection?.emprunteur ?? ""
+                        isRequired: true
+                - component: PageRow
+                  name: pageRow10
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: DatePicker
+                      name: modifierPretDateDebut
+                      layout:
+                        columnSize: 0.9992365300552073
+                      props:
+                        fullWidth: true
+                        label: Date début
+                        defaultValue:
+                          $$jsExpression: dataGridPret.selection?.date_debut
+                        isRequired: true
+                    - component: DatePicker
+                      name: modifierPretDateRetourPrevue
+                      layout:
+                        columnSize: 1.0007634699447927
+                      props:
+                        label: Date retour prévue
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridPret.selection?.date_retour_prevue ?? ""
+                        isRequired: true
+                - component: PageRow
+                  name: pageRow11
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: DatePicker
+                      name: modifierPretDateRetour
+                      props:
+                        label: Date retour
+                        fullWidth: true
+                        defaultValue:
+                          $$jsExpression: dataGridPret.selection?.date_retour ?? ""
+                    - component: Select
+                      name: modifierPretStatus
+                      layout:
+                        columnSize: 1
+                      props:
+                        label: Status
+                        fullWidth: true
+                        options:
+                          $$jsExpression: "[\r
+
+                            \  { value: false, label: \"En cours\" },\r
+
+                            \  { value: true, label: \"Retourné\" }\r
+
+                            ]"
+                        isRequired: false
+                        defaultValue:
+                          $$jsExpression: dataGridPret.selection?.statut_pret?.toString() === "Retourné"
+              props:
+                submitButtonText: Modifier
+                onSubmit:
+                  $$jsExpressionAction: "if (dataGridPret.selection) {\r
+
+                    \  modifierPret.call().then(() => listePrets.refetch())\r
+
+                    }"
+                formControlsFullWidth: false
+      props:
+        justifyContent: start
+    - component: PageRow
+      name: pageRow13
+      children:
+        - component: Container
+          name: containerAjouterLivre
+          children:
+            - component: Text
+              name: textTitreAjouterLivre
+              props:
+                variant: h2
+                value: Ajouter un livre
+            - component: Form
+              name: formAjouterLivre
+              props:
+                submitButtonText: Ajouter
+                onSubmit:
+                  $$jsExpressionAction: ajouterLivre.call().then(() => listeLivres.refetch())
+                formControlsFullWidth: false
+              children:
+                - component: PageRow
+                  name: pageRow3
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: TextField
+                      name: ajouterLivreAuteur
+                      layout:
+                        columnSize: 0.8693031770841849
+                      props:
+                        defaultValue: null
+                        label: Auteur
+                        fullWidth: true
+                        isRequired: true
+                    - component: TextField
+                      name: ajouterLivreTitre
+                      layout:
+                        columnSize: 1.1306968229158152
+                      props:
+                        label: Titre
+                        fullWidth: true
+                        defaultValue: null
+                        isRequired: true
+                - component: PageRow
+                  name: pageRow4
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: TextField
+                      name: ajouterLivreIsbn
+                      layout:
+                        columnSize: 0.6582727876757392
+                      props:
+                        label: ISBN
+                        fullWidth: true
+                        defaultValue: null
+                        isRequired: true
+                    - component: TextField
+                      name: ajouterLivreDescription
+                      layout:
+                        columnSize: 1.3417272123242605
+                      props:
+                        label: Description
+                        fullWidth: true
+                        defaultValue: null
+                        isRequired: false
+                - component: PageRow
+                  name: pageRow14
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: DatePicker
+                      name: ajouterLivreDate
+                      layout:
+                        columnSize: 1
+                      props:
+                        fullWidth: true
+                        label: Date d'ajout
+                        defaultValue: null
+                        isRequired: false
+                    - component: Select
+                      name: ajouterLivreDisponible
+                      layout:
+                        columnSize: 1
+                      props:
+                        fullWidth: true
+                        label: Est disponible
+                        options:
+                          $$jsExpression: "[\r
+
+                            \  { value: true, label: \"Disponible\" },\r
+
+                            \  { value: false, label: \"Indisponible\" }\r
+
+                            ]"
+                        isRequired: true
+                        defaultValue:
+                          $$jsExpression: "true"
+        - component: Container
+          name: containerAjouterPret
+          children:
+            - component: Text
+              name: textTitreAjouterPret
+              props:
+                variant: h2
+                value: Ajouter un prêt
+            - component: Form
+              name: formAjouterPret
+              props:
+                submitButtonText: Ajouter
+                onSubmit:
+                  $$jsExpressionAction: ajouterPret.call().then(() => listePrets.refetch())
+                formControlsFullWidth: false
+              children:
+                - component: PageRow
+                  name: pageRow12
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: TextField
+                      name: ajouterPretLivreId
+                      layout:
+                        columnSize: 0.6547268898469423
+                      props:
+                        defaultValue:
+                          $$jsExpression: dataGridLivre.selection?.id ?? 0
+                        label: ID Livre
+                        fullWidth: true
+                        isRequired: true
+                        disabled:
+                          $$jsExpression: dataGridLivre.selection
+                    - component: TextField
+                      name: ajouterPretEmprunteur
+                      layout:
+                        columnSize: 1.3452731101530577
+                      props:
+                        label: Emprunteur
+                        fullWidth: true
+                        defaultValue: null
+                        isRequired: true
+                - component: PageRow
+                  name: pageRow16
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: DatePicker
+                      name: ajouterPretDateDebut
+                      layout:
+                        columnSize: 0.9986495377263754
+                      props:
+                        label: Date début
+                        fullWidth: true
+                        isRequired: true
+                    - component: DatePicker
+                      name: ajouterPretDateRetourPrevue
+                      layout:
+                        columnSize: 1.0013504622736242
+                      props:
+                        fullWidth: true
+                        label: Date retour prévue
+                        isRequired: true
+                - component: PageRow
+                  name: pageRow15
+                  props:
+                    justifyContent: start
+                  children:
+                    - component: DatePicker
+                      name: ajouterPretDateRetour
+                      layout:
+                        columnSize: 1
+                      props:
+                        fullWidth: true
+                        label: Date retour
+                        defaultValue: null
+                        isRequired: false
+                    - component: Select
+                      name: ajouterPretStatus
+                      layout:
+                        columnSize: 1
+                      props:
+                        fullWidth: true
+                        label: Status
+                        options:
+                          $$jsExpression: "[\r
+
+                            \  { value: false, label: \"En cours\" },\r
+
+                            \  { value: true, label: \"Retourné\" }\r
+
+                            ]"
+                        isRequired: false
+                        defaultValue:
+                          $$jsExpression: "true"
+      props:
+        justifyContent: start
+  queries:
+    - name: listeLivres
+      mode: query
+      query:
+        kind: rest
+        url:
+          $$jsExpression:
+            "`${parameters.base_url}/api/bibliotheque/livre?tous=${paramete\
+            rs.tous}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.cle_api },
+            },
+          ]
+        method: GET
+        searchParams: []
+      parameters:
+        - name: tous
+          value:
+            $$jsExpression: checkboxTous.checked ?? false
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+    - name: modifierLivre
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.base_url}/api/bibliotheque/livre/${parameters.id}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.cle_api },
+            },
+          ]
+        method: PUT
+        searchParams: []
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \    \"titre\": \"${parameters.titre}\",\r
+
+              \    \"auteur\": \"${parameters.auteur}\",\r
+
+              \    \"isbn\": \"${parameters.isbn}\",\r
+
+              \    \"disponible\": ${parameters.disponible},\r
+
+              \    \"date_ajout\": \"${parameters.date_ajout}\",\r
+
+              \    \"description\": \"${parameters.description}\"\r
+
+              }`"
+          contentType: application/json
+      parameters:
+        - name: id
+          value:
+            $$jsExpression: modifierLivreId.value
+        - name: auteur
+          value:
+            $$jsExpression: modifierLivreAuteur.value
+        - name: bibliotheque_id
+          value:
+            $$jsExpression: modifierLivreBibliothequeId.value
+        - name: date_ajout
+          value:
+            $$jsExpression: modifierLivreDate.value
+        - name: description
+          value:
+            $$jsExpression: modifierLivreDescription.value
+        - name: disponible
+          value:
+            $$jsExpression: modifierLivreDisponible.value
+        - name: isbn
+          value:
+            $$jsExpression: modifierLivreIsbn.value
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: titre
+          value:
+            $$jsExpression: modifierLivreTitre.value
+        - name: cle_api
+          value:
+            $$env: API_KEY
+    - name: supprimerLivre
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.base_url}/api/bibliotheque/livre/${parameters.id}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.cle_api },
+            },
+          ]
+        method: DELETE
+        searchParams: []
+      parameters:
+        - name: id
+          value:
+            $$jsExpression: dataGridLivre.selection?.id ?? 0
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+    - name: ajouterLivre
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.base_url}/api/bibliotheque/livre`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.cle_api },
+            },
+          ]
+        method: POST
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \    \"titre\": \"${parameters.titre}\",\r
+
+              \    \"auteur\": \"${parameters.auteur}\",\r
+
+              \    \"isbn\": \"${parameters.isbn}\",\r
+
+              \    \"disponible\": ${parameters.disponible},\r
+
+              \    \"date_ajout\": ${parameters.date_ajout ?
+              `\"${parameters.date_ajout}\"` : null},\r
+
+              \    \"description\": ${parameters.description ?
+              `\"${parameters.description}\"` : null}\r
+
+              }`"
+          contentType: application/json
+        searchParams: []
+      parameters:
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+        - name: auteur
+          value:
+            $$jsExpression: ajouterLivreAuteur.value
+        - name: titre
+          value:
+            $$jsExpression: ajouterLivreTitre.value
+        - name: isbn
+          value:
+            $$jsExpression: ajouterLivreIsbn.value
+        - name: description
+          value:
+            $$jsExpression: ajouterLivreDescription.value
+        - name: date_ajout
+          value:
+            $$jsExpression: ajouterLivreDate.value
+        - name: disponible
+          value:
+            $$jsExpression: ajouterLivreDisponible.value
+    - name: modifierStatusLivre
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression:
+            "`${parameters.base_url}/api/bibliotheque/livre/${parameters.id\
+            }/status`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.cle_api },
+            },
+          ]
+        method: PUT
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`\r
+
+              {\r
+
+              \    \"disponible\": ${parameters.disponible}\r
+
+              }\r
+
+              `"
+          contentType: application/json
+        searchParams: []
+      parameters:
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+        - name: id
+          value:
+            $$jsExpression: dataGridLivre.selection?.id
+        - name: disponible
+          value:
+            $$jsExpression: "!dataGridLivre.selection?.disponible"
+    - name: listePrets
+      mode: query
+      query:
+        kind: rest
+        url:
+          $$jsExpression:
+            "`${parameters.base_url}/api/bibliotheque/livre/${parameters.li\
+            vre_id}`"
+        headers:
+          [
+            {
+              name: Authorization,
+              value: { $$jsExpression: parameters.cle_api },
+            },
+          ]
+        method: GET
+      parameters:
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+        - name: livre_id
+          value:
+            $$jsExpression: dataGridLivre.selection?.id
+    - name: modifierStatusPret
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression:
+            "`${parameters.base_url}/api/bibliotheque/pret/${parameters.id}\
+            /status`"
+        searchParams: []
+        headers:
+          - name: Authorization
+            value:
+              $$jsExpression: parameters.cle_api
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`\r
+
+              { \r
+
+              \    \"status\": ${parameters.status} \r
+
+              }\r
+
+              `"
+          contentType: application/json
+        method: PUT
+      parameters:
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+        - name: id
+          value:
+            $$jsExpression: dataGridPret.selection?.id
+        - name: status
+          value:
+            $$jsExpression: dataGridPret.selection?.statut_pret === "En cours"
+    - name: supprimerPret
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.base_url}/api/bibliotheque/pret/${parameters.id}`"
+        searchParams: []
+        headers:
+          - name: Authorization
+            value:
+              $$jsExpression: parameters.cle_api
+        method: DELETE
+      parameters:
+        - name: id
+          value:
+            $$jsExpression: dataGridPret.selection?.id ?? 0
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+    - name: modifierPret
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.base_url}/api/bibliotheque/pret/${parameters.id}`"
+        searchParams: []
+        headers:
+          - name: Authorization
+            value:
+              $$jsExpression: parameters.cle_api
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \    \"livre_id\": ${parameters.livre_id},\r
+
+              \    \"emprunteur\": \"${parameters.emprunteur}\",\r
+
+              \    \"date_debut\": \"${parameters.date_debut}\",\r
+
+              \    \"date_retour_prevue\":
+              \"${parameters.date_retour_prevue}\",\r
+
+              \    \"date_retour\": ${parameters.date_retour ?
+              `\"${parameters.date_retour}\"` : null},\r
+
+              \    \"status\": ${parameters.status}\r
+
+              }`"
+          contentType: application/json
+        method: PUT
+      parameters:
+        - name: id
+          value:
+            $$jsExpression: modifierPretId.value
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+        - name: livre_id
+          value:
+            $$jsExpression: modifierPretLivreId.value
+        - name: emprunteur
+          value:
+            $$jsExpression: modifierPretEmprunteur.value
+        - name: date_debut
+          value:
+            $$jsExpression: modifierPretDateDebut.value
+        - name: date_retour_prevue
+          value:
+            $$jsExpression: modifierPretDateRetourPrevue.value
+        - name: date_retour
+          value:
+            $$jsExpression: modifierPretDateRetour.value
+        - name: status
+          value:
+            $$jsExpression: modifierPretStatus.value
+    - name: ajouterPret
+      mode: mutation
+      query:
+        kind: rest
+        url:
+          $$jsExpression: "`${parameters.base_url}/api/bibliotheque/pret`"
+        searchParams: []
+        headers:
+          - name: Authorization
+            value:
+              $$jsExpression: parameters.cle_api
+        body:
+          kind: raw
+          content:
+            $$jsExpression: "`{\r
+
+              \    \"livre_id\": ${parameters.livre_id},\r
+
+              \    \"emprunteur\": \"${parameters.emprunteur}\",\r
+
+              \    \"date_debut\": \"${parameters.date_debut}\",\r
+
+              \    \"date_retour_prevue\":
+              \"${parameters.date_retour_prevue}\",\r
+
+              \    \"date_retour\": ${parameters.date_retour ?
+              `\"${parameters.date_retour}\"` : null},\r
+
+              \    \"status\": ${parameters.status}\r
+
+              }`"
+          contentType: application/json
+        method: POST
+      parameters:
+        - name: base_url
+          value:
+            $$env: API_HOST
+        - name: cle_api
+          value:
+            $$env: API_KEY
+        - name: livre_id
+          value:
+            $$jsExpression: ajouterPretLivreId.value
+        - name: emprunteur
+          value:
+            $$jsExpression: ajouterPretEmprunteur.value
+        - name: date_debut
+          value:
+            $$jsExpression: ajouterPretDateDebut.value
+        - name: date_retour_prevue
+          value:
+            $$jsExpression: ajouterPretDateRetourPrevue.value
+        - name: date_retour
+          value:
+            $$jsExpression: ajouterPretDateRetour.value
+        - name: status
+          value:
+            $$jsExpression: ajouterPretStatus.value

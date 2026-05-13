@@ -4,8 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Travail Pratique</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script defer src="js/script.js"></script>
 </head>
 <body>
-    
+    <h1>Épreuve finale - Services Web H26</h1>
+    <h2>Didier Mathieu</h2>
+    <div class="conteneur-formulaires">
+        <form id="formulaire-creation">
+            <h2>Création de la bibliothèque</h2>
+            <label for="nom">Nom de la bibliothèque</label>
+            <input type="text" id="nom" name="nom" required>
+
+            <label for="courrielCreation">Courriel</label>
+            <input type="email" id="courrielCreation" name="courrielCreation" required>
+
+            <label for="mdpCreation">Mot de passe</label>
+            <input type="password" id="mdpCreation" name="mdpCreation" required>
+
+            <button id="bouttonCreation" type="submit">Créer</button>
+        </form>
+    </div>
+    <div class="conteneur-formulaires">
+        <form id="formulaire-recuperation">
+            <h2>Récupération d'une clé api</h2>
+            <label for="courrielRecup">Courriel</label>
+            <input type="email" id="courrielRecup" name="courrielRecup" required>
+
+            <label for="mdpRecup">Mot de passe</label>
+            <input type="password" id="mdpRecup" name="mdpRecup" required>
+
+            <div class="checkbox-container">
+                <input type="checkbox" id="genererCle" name="genererCle" value="valeur">
+                <label for="genererCle">Générer une nouvelle clé</label>
+            </div>
+
+            <button>Récupérer</button>
+        </form>
+    </div>
 </body>
 </html>
