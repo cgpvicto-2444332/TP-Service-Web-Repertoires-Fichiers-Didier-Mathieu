@@ -106,7 +106,7 @@ spec:
                 - component: Text
                   name: textTitrePrets
                   layout:
-                    columnSize: 1.8414016767971713
+                    columnSize: 1.8413682234454096
                     horizontalAlign: start
                     verticalAlign: start
                   props:
@@ -115,7 +115,7 @@ spec:
                 - component: Button
                   name: buttonModifierStatusPret
                   layout:
-                    columnSize: 0.5753622279977979
+                    columnSize: 0.5753956813495595
                     verticalAlign: center
                   props:
                     fullWidth: true
@@ -160,6 +160,7 @@ spec:
                     type: number
                   - field: emprunteur
                     type: string
+                    width: 160
                   - field: date_debut
                     type: dateTime
                   - field: date_retour_prevue
@@ -512,7 +513,7 @@ spec:
                             \  { value: false, label: \"Indisponible\" }\r
 
                             ]"
-                        isRequired: true
+                        isRequired: false
                         defaultValue:
                           $$jsExpression: "true"
         - component: Container
@@ -565,7 +566,7 @@ spec:
                     - component: DatePicker
                       name: ajouterPretDateDebut
                       layout:
-                        columnSize: 0.9986495377263754
+                        columnSize: 0.9986841193988502
                       props:
                         label: Date début
                         fullWidth: true
@@ -573,7 +574,7 @@ spec:
                     - component: DatePicker
                       name: ajouterPretDateRetourPrevue
                       layout:
-                        columnSize: 1.0013504622736242
+                        columnSize: 1.0013158806011493
                       props:
                         fullWidth: true
                         label: Date retour prévue
