@@ -850,6 +850,7 @@ spec:
             },
           ]
         method: GET
+        searchParams: []
       parameters:
         - name: base_url
           value:
